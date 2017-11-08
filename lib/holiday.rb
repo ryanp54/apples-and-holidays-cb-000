@@ -55,12 +55,12 @@ def title_format(str_sym)
 end
 
 def all_supplies_in_holidays(holiday_hash)
-  holiday_hash.each do |season, holidays|
+  holiday_hash.collect do |season, holidays|
     puts "#{title_format(season)}:"
-    holidays.each do |holiday, supplies|
+    holidays.collect do |holiday, supplies|
       puts "  #{title_format(holiday)}: #{supplies.inject('') {|result, supply| result + title_format(supply) + ', '}}"[0..-3]
     end
-  end
+  end.flatten.compact
 end
 
 def all_holidays_with_bbq(holiday_hash)
